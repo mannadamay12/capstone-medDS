@@ -10,6 +10,8 @@ import { OverviewTasksProgress } from 'src/sections/overview/overview-tasks-prog
 import { OverviewTotalCustomers } from 'src/sections/overview/overview-total-customers';
 import { OverviewTotalProfit } from 'src/sections/overview/overview-total-profit';
 import { OverviewTraffic } from 'src/sections/overview/overview-traffic';
+import {Stack,Typography,Button,SvgIcon} from '@mui/material';
+import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 
 const now = new Date();
 
@@ -17,7 +19,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        Overview | Devias Kit
+        Medhere
       </title>
     </Head>
     <Box
@@ -28,6 +30,19 @@ const Page = () => (
       }}
     >
       <Container maxWidth="xl">
+      <Stack spacing={3}>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              spacing={4}
+            >
+              <Stack spacing={1}>
+                <Typography variant="h4">
+                Dashboard
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
         <Grid
           container
           spacing={3}
@@ -105,7 +120,7 @@ const Page = () => (
           >
             <OverviewTraffic
               chartSeries={[63, 15, 22]}
-              labels={['Cold', 'Infection', 'Other']}
+              labels={['Low', 'Medium', 'High']}
               sx={{ height: '100%' }}
             />
           </Grid>

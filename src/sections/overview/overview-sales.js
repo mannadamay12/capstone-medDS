@@ -105,7 +105,7 @@ const useChartOptions = () => {
 };
 
 export const OverviewSales = (props) => {
-  const { chartSeries, sx } = props;
+  const { chartSeries, sx,title } = props;
   const chartOptions = useChartOptions();
 
   return (
@@ -124,7 +124,7 @@ export const OverviewSales = (props) => {
             Sync
           </Button>
         )}
-        title="Heart rate"
+        title={title}
       />
       <CardContent>
         <Chart
@@ -136,19 +136,6 @@ export const OverviewSales = (props) => {
         />
       </CardContent>
       <Divider />
-      <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button
-          color="inherit"
-          endIcon={(
-            <SvgIcon fontSize="small">
-              <ArrowRightIcon />
-            </SvgIcon>
-          )}
-          size="small"
-        >
-          Expand
-        </Button>
-      </CardActions>
     </Card>
   );
 };

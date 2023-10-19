@@ -46,6 +46,15 @@ export const items = [
   //   )
   // },
   {
+    title: 'Notifications',
+    path: '/notifications',
+    icon: (
+      <SvgIcon fontSize="small">
+        <CogIcon />
+      </SvgIcon>
+    )
+  },
+  {
     title: 'My Profile',
     path: '/settings',
     icon: (

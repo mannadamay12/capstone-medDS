@@ -19,7 +19,7 @@ export const OverviewTotalProfit = (props) => {
               color="text.secondary"
               variant="overline"
             >
-              Nurses Present
+              Total patients
             </Typography>
             <Typography variant="h4">
               {value}

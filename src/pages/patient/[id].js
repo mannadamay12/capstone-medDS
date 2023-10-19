@@ -18,6 +18,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Unstable_Grid2';
 import SendIcon from '@mui/icons-material/Send';
 import { OverviewSales } from 'src/sections/overview/overview-sales';
+import AddNoteButton from 'src/components/AddNoteButton';
+import { PatientAppointmentTable } from 'src/sections/customer/PatientAppointmentTable';
 
 const now = new Date();
 
@@ -231,7 +233,7 @@ const Page = () => {
                                 </Card>
                             </Stack>
                             <Stack>
-                                <Card sx={{ maxWidth: 345 }}>
+                                <Card sx={{ maxWidth: 345 }} style={{backgroundColor:"#ff5050"}}>
                                     <CardContent style={{ padding: "10px 15px" }}>
                                         <Typography variant="subtitle1" gutterBottom>
                                             Emergency information:-
@@ -306,13 +308,20 @@ const Page = () => {
                                     </CardContent>
                                 </Card>
                             </Grid>
-
                             <Grid xs={12}>
                                 <Card>
                                     <CardContent style={{ padding: "10px 15px" }}>
-                                        <Typography variant="h5" gutterBottom>
-                                            Notes
-                                        </Typography>
+                                        <Stack direction="row"
+                                            justifyContent="space-between">
+                                            <Stack>
+                                                <Typography variant="h5" gutterBottom>
+                                                    Notes
+                                                </Typography>
+                                            </Stack>
+                                            <Stack xs={1}>
+                                                <AddNoteButton />
+                                            </Stack>
+                                        </Stack>
                                         <Typography variant="subtitle1" gutterBottom>
                                             <ul>
                                                 <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
@@ -325,51 +334,116 @@ const Page = () => {
 
                         </Grid>
                     </Grid>
+                    <Grid container spacing={2}>
+                        <Grid xs={12}>
+                            <OverviewSales
+                                title={"Heart rate"}
+                                chartSeries={[
+                                    {
+                                        name: 'Cold',
+                                        data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20]
+                                    },
+                                    {
+                                        name: 'Infection',
+                                        data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
+                                    },
+                                    {
+                                        name: 'Other',
+                                        data: [2, 7, 5, 10, 22, 3, 3, 4, 6, 9, 1, 4]
+                                    }
+                                ]}
+                                sx={{ height: '100%' }}
+                            />
+                        </Grid>
+                        <Grid xs={12}>
+                            <OverviewSales
+                                title={"Sp02"}
+                                chartSeries={[
+                                    {
+                                        name: 'Cold',
+                                        data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20]
+                                    },
+                                    {
+                                        name: 'Infection',
+                                        data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
+                                    },
+                                    {
+                                        name: 'Other',
+                                        data: [2, 7, 5, 10, 22, 3, 3, 4, 6, 9, 1, 4]
+                                    }
+                                ]}
+                                sx={{ height: '100%' }}
+                            />
+                        </Grid>
+                        <Grid xs={12}>
+                            <OverviewSales
+                                title={"Temperature"}
+                                chartSeries={[
+                                    {
+                                        name: 'Cold',
+                                        data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20]
+                                    },
+                                    {
+                                        name: 'Infection',
+                                        data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
+                                    },
+                                    {
+                                        name: 'Other',
+                                        data: [2, 7, 5, 10, 22, 3, 3, 4, 6, 9, 1, 4]
+                                    }
+                                ]}
+                                sx={{ height: '100%' }}
+                            />
+                        </Grid>
+                        <Grid xs={12}>
+                            <OverviewSales
+                                title={"Steps"}
+                                chartSeries={[
+                                    {
+                                        name: 'Cold',
+                                        data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20]
+                                    },
+                                    {
+                                        name: 'Infection',
+                                        data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
+                                    },
+                                    {
+                                        name: 'Other',
+                                        data: [2, 7, 5, 10, 22, 3, 3, 4, 6, 9, 1, 4]
+                                    }
+                                ]}
+                                sx={{ height: '100%' }}
+                            />
+                        </Grid>
 
-                    <Grid>
-                        <OverviewSales
-                            chartSeries={[
-                                {
-                                    name: 'Cold',
-                                    data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20]
-                                },
-                                {
-                                    name: 'Infection',
-                                    data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
-                                },
-                                {
-                                    name: 'Other',
-                                    data: [2, 7, 5, 10, 22, 3, 3, 4, 6, 9, 1, 4]
-                                }
-                            ]}
-                            sx={{ height: '100%' }}
-                        />
-                    </Grid>
-
-                    <Grid>
-                        <CustomersTable
-                            count={data.length}
-                            items={customers}
-                        />
-                    </Grid>
-                    <Grid>
-                        <Card>
-                            <CardContent style={{ padding: "10px 15px" }}>
-                                <Typography variant="h5" gutterBottom>
-                                    Past messages
-                                </Typography>
-                                <Typography variant="subtitle1" gutterBottom>
-                                    <ul>
-                                        <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
-                                        <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
-                                    </ul>
-                                </Typography>
-                                <TextField id="outlined-basic" label="Message" variant="outlined" />
-                                <Button variant="contained" style={{margin:"5px 10px"}} endIcon={<SendIcon />}>
-                                    Send
-                                </Button>
-                            </CardContent>
-                        </Card>
+                        <Grid xs={12}>
+                            <Typography variant="h5" gutterBottom>
+                                Appointments
+                            </Typography>
+                            <PatientAppointmentTable
+                                count={data.length}
+                                items={customers}
+                            />
+                        </Grid>
+                        <Grid xs={12}>
+                            <Card style={{ padding: "15px 10px " }}>
+                                <CardContent style={{ padding: "10px 15px" }}>
+                                    <Typography variant="h5" gutterBottom>
+                                        Past messages
+                                    </Typography>
+                                    <Typography variant="subtitle1" gutterBottom>
+                                        <ul>
+                                            <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
+                                            <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
+                                        </ul>
+                                    </Typography>
+                                    <TextField id="outlined-basic" label="Message" variant="outlined" />
+                                    <Button variant="contained" style={{ margin: "5px 10px" }} endIcon={<SendIcon />}>
+                                        Send
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
                 </Container>
             </Box>

@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
-import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import {
   Box,
   Button,
@@ -20,7 +19,7 @@ const companies = [
   {
     id: '2569ce0d517a7f06d3ea1f24',
     createdAt: '25/08/2023',
-    description: 'Kidney function test',
+    description: '10pm-11pm',
     logo: '/assets/avatars/avatar-alcides-antonio.png',
     title: 'Patient 231',
     // downloads: '594'
@@ -28,7 +27,7 @@ const companies = [
   {
     id: 'ed2b900870ceba72d203ec15',
     createdAt: '26/08/2023',
-    description: 'Blood Test',
+    description: '10pm-11pm',
     logo: '/assets/avatars/avatar-anika-visser.png',
     title: 'Patient 69',
     // downloads: '625'
@@ -36,7 +35,7 @@ const companies = [
   {
     id: 'a033e38768c82fca90df3db7',
     createdAt: '03/04/2019',
-    description: 'MRI',
+    description: '10pm-11pm',
     logo: '/assets/avatars/avatar-cao-yu.png',
     title: 'Patient 322',
     // downloads: '857'
@@ -90,23 +89,20 @@ const Page = () => (
           >
             <Stack spacing={1}>
               <Typography variant="h4">
-              Appointments
+                Appointments
               </Typography>
             </Stack>
             <div>
               <Button
-                startIcon={(
-                  <SvgIcon fontSize="small">
-                    <PlusIcon />
-                  </SvgIcon>
-                )}
                 variant="contained"
               >
-                Add
+                View past
               </Button>
             </div>
           </Stack>
-          <CompaniesSearch />
+          <Typography variant="h5">
+            Requests
+          </Typography>
           <Grid
             container
             spacing={3}
@@ -128,12 +124,36 @@ const Page = () => (
               justifyContent: 'center'
             }}
           >
-            <Pagination
-              count={3}
-              size="small"
-            />
+          </Box>
+
+          <Typography variant="h5">
+            Upcoming
+          </Typography>
+          <Grid
+            container
+            spacing={3}
+          >
+            {companies.map((company) => (
+              <Grid
+                xs={12}
+                md={6}
+                lg={4}
+                key={company.id}
+              >
+                <CompanyCard company={company} />
+              </Grid>
+            ))}
+          </Grid>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}
+          >
           </Box>
         </Stack>
+
+        
       </Container>
     </Box>
   </>

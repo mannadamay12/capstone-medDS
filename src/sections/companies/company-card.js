@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ClockIcon from '@heroicons/react/24/solid/ClockIcon';
-import { Avatar, Box, Card, CardContent, Divider, Stack, SvgIcon, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardContent, Divider, Stack, SvgIcon, Typography,Button } from '@mui/material';
 
 export const CompanyCard = (props) => {
   const { company } = props;
@@ -46,48 +46,12 @@ export const CompanyCard = (props) => {
       <Stack
         alignItems="center"
         direction="row"
-        justifyContent="space-between"
+        justifyContent="center"
         spacing={2}
         sx={{ p: 2 }}
       >
-        <Stack
-          alignItems="center"
-          direction="row"
-          spacing={1}
-        >
-          <SvgIcon
-            color="action"
-            fontSize="small"
-          >
-            <ClockIcon />
-          </SvgIcon>
-          <Typography
-            color="text.secondary"
-            display="inline"
-            variant="body2"
-          >
-            Updated 2hr ago
-          </Typography>
-        </Stack>
-        <Stack
-          alignItems="center"
-          direction="row"
-          spacing={1}
-        >
-          {/* <SvgIcon
-            color="action"
-            fontSize="small"
-          >
-            <ArrowDownOnSquareIcon />
-          </SvgIcon> */}
-          {/* <Typography
-            color="text.secondary"
-            display="inline"
-            variant="body2"
-          >
-            {company.downloads} Downloads
-          </Typography> */}
-        </Stack>
+        <Button variant="contained">Accept</Button>
+        <Button variant="text">Decline</Button>
       </Stack>
     </Card>
   );

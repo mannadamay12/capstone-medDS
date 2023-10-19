@@ -21,7 +21,7 @@ export const OverviewTotalCustomers = (props) => {
               color="text.secondary"
               variant="overline"
             >
-              Admitted Patients
+              Notification
             </Typography>
             <Typography variant="h4">
               {value}
@@ -46,7 +46,7 @@ export const OverviewTotalCustomers = (props) => {
             spacing={2}
             sx={{ mt: 2 }}
           >
-            <Stack
+            {/* <Stack
               alignItems="center"
               direction="row"
               spacing={0.5}
@@ -63,13 +63,13 @@ export const OverviewTotalCustomers = (props) => {
               >
                 {difference}%
               </Typography>
-            </Stack>
-            <Typography
+            </Stack> */}
+            {/* <Typography
               color="text.secondary"
               variant="caption"
             >
               Since last month
-            </Typography>
+            </Typography> */}
           </Stack>
         )}
       </CardContent>
