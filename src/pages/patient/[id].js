@@ -198,33 +198,35 @@ const Page = () => {
             >
                 <Container maxWidth="xl">
                     <Grid container spacing={2}>
-                        <Grid xs={4}>
-                            <Stack>
+                        <Grid xs={4} style={{textAlign: 'center'}}>
+                            <Stack >
                                 <Card sx={{ maxWidth: 345 }}>
                                     <CardMedia
                                         sx={{ height: 140 }}
                                         image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
-                                        title="green iguana"
+                                        title="patient image"
                                     />
-                                    <CardContent style={{ padding: "10px 15px" }}>
+                                    <CardContent style={{ padding: "10px 10px 0px 15px", textAlign: 'center'}}>
                                         <Typography gutterBottom variant="h5" component="div">
                                             {patient.name} ({patient.id})
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.age}
+                                            {"Age: "} {patient.age}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.dob}
+                                            {"DOB: "} {patient.dob}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.gender}
+                                            {"Gender: "} {patient.gender}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.bloodType}
+                                            {"BloodType: "} {patient.bloodType}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            Contact information:-
-                                            {patient.phone} -  {patient.email}
+                                            {"Contact Number: "} {patient.phone}
+                                        </Typography>
+                                        <Typography variant="subtitle1" gutterBottom>
+                                            {"Email: "} {patient.email}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
@@ -233,20 +235,27 @@ const Page = () => {
                                 </Card>
                             </Stack>
                             <Stack>
-                                <Card sx={{ maxWidth: 345 }} style={{backgroundColor:"#ff5050"}}>
+                                <Card sx={{ maxWidth: 345 }}
+                                style={{backgroundColor:"#ff5050"}}>
                                     <CardContent style={{ padding: "10px 15px" }}>
-                                        <Typography variant="subtitle1" gutterBottom>
+                                        <Typography variant="subtitle1"
+                                        gutterBottom>
                                             Emergency information:-
-                                            {patient.phone} -  {patient.email}
+                                        </Typography>
+                                        <Typography variant="subtitle1">
+                                        {patient.phone}
+                                        </Typography>
+                                        <Typography variant="subtitle1">
+                                        {patient.email}
                                         </Typography>
                                     </CardContent>
                                 </Card>
                             </Stack>
                         </Grid>
                         <Grid container xs={8}>
-                            <Grid xs={3}>
+                            <Grid xs={3} style={{textAlign: 'center'}}>
                                 <Card>
-                                    <CardContent style={{ padding: "10px 15px" }}>
+                                    <CardContent style={{ padding: "10px 15px"}}>
                                         <Typography variant="subtitle1" gutterBottom>
                                             Heart rate
                                         </Typography>
@@ -256,7 +265,7 @@ const Page = () => {
                                     </CardContent>
                                 </Card>
                             </Grid>
-                            <Grid xs={3}>
+                            <Grid xs={3} style={{textAlign: 'center'}}>
                                 <Card>
                                     <CardContent style={{ padding: "10px 15px" }}>
                                         <Typography variant="subtitle1" gutterBottom>
@@ -268,7 +277,7 @@ const Page = () => {
                                     </CardContent>
                                 </Card>
                             </Grid>
-                            <Grid xs={3}>
+                            <Grid xs={3} style={{textAlign: 'center'}}>
                                 <Card>
                                     <CardContent style={{ padding: "10px 15px" }}>
                                         <Typography variant="subtitle1" gutterBottom>
@@ -280,7 +289,7 @@ const Page = () => {
                                     </CardContent>
                                 </Card>
                             </Grid>
-                            <Grid xs={3}>
+                            <Grid xs={3} style={{textAlign: 'center'}}>
                                 <Card>
                                     <CardContent style={{ padding: "10px 15px" }}>
                                         <Typography variant="subtitle1" gutterBottom>
@@ -335,6 +344,38 @@ const Page = () => {
                         </Grid>
                     </Grid>
                     <Grid container spacing={2}>
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent style={{ padding: "10px 15px" }}>
+                                    <Typography variant="h5" gutterBottom>
+                                        Prescription
+                                    </Typography>
+                                    <Typography variant="subtitle1" gutterBottom>
+                                        <ol>
+                                            <li>Parecetamol - After Food - 3 times a day</li>
+                                            <li>SQL - 1 per day</li>
+                                            <li>DBMS - after dinner</li>
+                                        </ol>
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent style={{ padding: "10px 15px" }}>
+                                    <Typography variant="h5" gutterBottom>
+                                        Notification
+                                    </Typography>
+                                    <Typography variant="subtitle1" gutterBottom>
+                                        <ol>
+                                            <li>Parecetamol - After Food - 3 times a day</li>
+                                            <li>SQL - 1 per day</li>
+                                            <li>DBMS - after dinner</li>
+                                        </ol>
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                         <Grid xs={12}>
                             <OverviewSales
                                 title={"Heart rate"}
