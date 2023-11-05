@@ -20,6 +20,10 @@ import SendIcon from '@mui/icons-material/Send';
 import { OverviewSales } from 'src/sections/overview/overview-sales';
 import AddNoteButton from 'src/components/AddNoteButton';
 import { PatientAppointmentTable } from 'src/sections/customer/PatientAppointmentTable';
+import { OverviewLatestProducts } from 'src/sections/overview/overview-latest-products';
+import { OverviewPrescript } from 'src/sections/overview/overview-prescript';
+import { OverviewTests } from 'src/sections/overview/overview-tests';
+
 
 const now = new Date();
 
@@ -198,7 +202,7 @@ const Page = () => {
             >
                 <Container maxWidth="xl">
                     <Grid container spacing={2}>
-                        <Grid xs={4} style={{textAlign: 'center'}}>
+                        <Grid xs={4}>
                             <Stack >
                                 <Card sx={{ maxWidth: 345 }}>
                                     <CardMedia
@@ -206,8 +210,8 @@ const Page = () => {
                                         image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
                                         title="patient image"
                                     />
-                                    <CardContent style={{ padding: "10px 10px 0px 15px", textAlign: 'center'}}>
-                                        <Typography gutterBottom variant="h5" component="div">
+                                    <CardContent style={{ padding: "10px 10px 0px 15px"}}>
+                                        <Typography gutterBottom variant="h5" component="div" style={{textAlign: 'center'}}>
                                             {patient.name} ({patient.id})
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
@@ -302,20 +306,21 @@ const Page = () => {
                                 </Card>
                             </Grid>
                             <Grid xs={12}>
-                                <Card>
-                                    <CardContent style={{ padding: "10px 15px" }}>
-                                        <Typography variant="h5" gutterBottom>
-                                            Test reports
-                                        </Typography>
-                                        <Typography variant="subtitle1" gutterBottom>
-                                            <ol>
-                                                <li>Heart report - OK - Date</li>
-                                                <li>Heart report - Not OK - Date</li>
-                                                <li>Heart report - Date</li>
-                                            </ol>
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+                            <OverviewTests
+                                    orders={[
+                                    {
+                                        id: '5ece2c077e39da27658aa8a9',
+                                        name: 'Lipid Profile',
+                                        remark: 'Patient exhibits high cholesterol levels with elevated LDL cholesterol, low HDL cholesterol, and borderline high triglycerides, necessitating urgent intervention and initiation of statin therapy.',
+                                        date: '5th Nov 2023'
+                                    },
+                                    {
+                                        id: '5ece2c0d16f70bff2cf86cd8',
+                                        name: 'Liver Function Tests (LFT)',
+                                        remark: 'A mild elevation in ALT levels, potential liver dysfunction, possibly related to high cholesterol; careful monitoring of liver enzymes is essential while on statin therapy.',
+                                        date: '5th Nov 2023'
+                                    }
+                                ]}/>
                             </Grid>
                             <Grid xs={12}>
                                 <Card>
@@ -333,8 +338,9 @@ const Page = () => {
                                         </Stack>
                                         <Typography variant="subtitle1" gutterBottom>
                                             <ul>
-                                                <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
-                                                <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
+                                                <li>Medical History: High Cholesterol, History of Heart Attack in 2008</li>
+                                                <li>Family History: Father had a history of stroke, mother had diabetes.</li>
+                                                <li>Diagnosis: Diagnosed with High Cholesterol in 2005, experienced a Heart Attack in 2008. Currently managing cholesterol with statins and regular cardiovascular check-ups.</li>
                                             </ul>
                                         </Typography>
                                     </CardContent>
@@ -345,38 +351,44 @@ const Page = () => {
                     </Grid>
                     <Grid container spacing={2}>
                         <Grid xs={6}>
-                            <Card>
-                                <CardContent style={{ padding: "10px 15px" }}>
-                                    <Typography variant="h5" gutterBottom>
-                                        Prescription
-                                    </Typography>
-                                    <Typography variant="subtitle1" gutterBottom>
-                                        <ol>
-                                            <li>Parecetamol - After Food - 3 times a day</li>
-                                            <li>SQL - 1 per day</li>
-                                            <li>DBMS - after dinner</li>
-                                        </ol>
-                                    </Typography>
-                                </CardContent>
-                            </Card>
+                            <OverviewPrescript
+                            orders={[
+                {
+                  id: 'f69f88012978187a6c12897f',
+                  dose: '30 mg',
+                  name: 'Ekaterina Tankova',
+                  duration: 'This prescription is for a 30-day supply. Refill as needed.',
+                  instruct: 'Take one tablet orally every evening with or without food.'
+                },
+                {
+                    id: 'f69f88012978187a6c12897f',
+                    name: 'Rosuvastatin (generic for Crestor)',
+                    dose: '10 mg',
+                    instruct: 'Take one tablet orally every evening with or without food.',
+                    duration: 'This prescription is for a 30-day supply. Refill as needed.'
+                  } 
+                ]}/>
                         </Grid>
                         <Grid xs={6}>
-                            <Card>
-                                <CardContent style={{ padding: "10px 15px" }}>
-                                    <Typography variant="h5" gutterBottom>
-                                        Notification
-                                    </Typography>
-                                    <Typography variant="subtitle1" gutterBottom>
-                                        <ol>
-                                            <li>Parecetamol - After Food - 3 times a day</li>
-                                            <li>SQL - 1 per day</li>
-                                            <li>DBMS - after dinner</li>
-                                        </ol>
-                                    </Typography>
-                                </CardContent>
-                            </Card>
+                                    <OverviewLatestProducts
+              products={[
+                {
+                  id: '5ece2c077e39da27658aa8a9',
+                  image: '/assets/products/product-1.png',
+                  name: 'Critical Alert: Patient John(15) Condition Deteriorating',
+                  updatedAt: "10th Nov 2023 - 20:00"
+                },
+                {
+                  id: '5ece2c0d16f70bff2cf86cd8',
+                  image: '/assets/products/product-2.png',
+                  name: 'Medication Adherence Alert: Patient Sarah(120)',
+                  updatedAt: "9th Nov 2023 - 14:00"
+                }
+              ]}
+              sx={{ height: '100%' }}
+            />
                         </Grid>
-                        <Grid xs={12}>
+                        <Grid xs={6}>
                             <OverviewSales
                                 title={"Heart rate"}
                                 chartSeries={[
@@ -396,7 +408,7 @@ const Page = () => {
                                 sx={{ height: '100%' }}
                             />
                         </Grid>
-                        <Grid xs={12}>
+                        <Grid xs={6}>
                             <OverviewSales
                                 title={"Sp02"}
                                 chartSeries={[
@@ -416,7 +428,7 @@ const Page = () => {
                                 sx={{ height: '100%' }}
                             />
                         </Grid>
-                        <Grid xs={12}>
+                        <Grid xs={6}>
                             <OverviewSales
                                 title={"Temperature"}
                                 chartSeries={[
@@ -436,7 +448,7 @@ const Page = () => {
                                 sx={{ height: '100%' }}
                             />
                         </Grid>
-                        <Grid xs={12}>
+                        <Grid xs={6}>
                             <OverviewSales
                                 title={"Steps"}
                                 chartSeries={[
@@ -474,8 +486,8 @@ const Page = () => {
                                     </Typography>
                                     <Typography variant="subtitle1" gutterBottom>
                                         <ul>
-                                            <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
-                                            <li>Doctor name, Date- Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur assumenda dolor esse saepe atque magnam et expedita nulla, laudantium, hic modi voluptates porro at! Officiis harum dolorum amet reiciendis iste.</li>
+                                            <li>Doctor Jai, 10th Nov - Mr. Smith reports stable blood pressure (132/86 mmHg) and improved overall well-being. Discussed the benefits of a heart-healthy diet and provided resources for dietary guidelines. No adverse reactions to medication noted. Patient encouraged to maintain healthy lifestyle habits. Follow-up in three months for routine check-up.</li>
+                                            <li>Doctor Manika, 9th Nov - Mr. Smith presented with elevated blood pressure (150/95 mmHg) and reported occasional dizziness. No significant medical history noted. Started on anti-hypertensive medication (Amlodipine, 5mg daily) and advised dietary changes. Follow-up in two weeks to assess response to medication.</li>
                                         </ul>
                                     </Typography>
                                     <TextField id="outlined-basic" label="Message" variant="outlined" />

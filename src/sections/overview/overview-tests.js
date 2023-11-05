@@ -1,6 +1,5 @@
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import ArrowRightIcon from '@heroicons/react/24/solid/ArrowRightIcon';
 import {
   Box,
   Button,
@@ -16,61 +15,44 @@ import {
   TableRow
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
-import { SeverityPill } from 'src/components/severity-pill';
 
-const statusMap = {
-  Medium: 'warning',
-  Low: 'success',
-  High: 'error'
-};
-
-export const OverviewLatestOrders = (props) => {
+export const OverviewTests = (props) => {
   const { orders = [], sx } = props;
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Priority Patients" />
+      <CardHeader title="Prescription" />
       <Scrollbar sx={{ flexGrow: 1 }}>
-        <Box sx={{ minWidth: 800 }}>
+        <Box>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>
-                  ID
+                  Test Name
                 </TableCell>
                 <TableCell>
-                  Paitent
-                </TableCell>
-                <TableCell sortDirection="desc">
-                  Date-Time
+                  Remark
                 </TableCell>
                 <TableCell>
-                  Risk Level
+                    Date
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {orders.map((order) => {
-                const createdAt = format(order.createdAt, 'dd/MM/yyyy');
-
                 return (
                   <TableRow
                     hover
                     key={order.id}
                   >
                     <TableCell>
-                      {order.ref}
+                     {order.name}
                     </TableCell>
                     <TableCell>
-                      {order.customer.name}
+                     {order.remark}
                     </TableCell>
                     <TableCell>
-                      {createdAt}
-                    </TableCell>
-                    <TableCell>
-                      <SeverityPill color={statusMap[order.status]}>
-                        {order.status}
-                      </SeverityPill>
+                    {order.date}
                     </TableCell>
                   </TableRow>
                 );
@@ -80,25 +62,11 @@ export const OverviewLatestOrders = (props) => {
         </Box>
       </Scrollbar>
       <Divider />
-      <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button
-          color="inherit"
-          endIcon={(
-            <SvgIcon fontSize="small">
-              <ArrowRightIcon />
-            </SvgIcon>
-          )}
-          size="small"
-          variant="text"
-        >
-          View all
-        </Button>
-      </CardActions>
     </Card>
   );
 };
 
-OverviewLatestOrders.prototype = {
+OverviewTests.prototype = {
   orders: PropTypes.array,
   sx: PropTypes.object
 };

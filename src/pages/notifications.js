@@ -174,35 +174,41 @@ const Page = () => {
             <OverviewLatestProducts
               products={[
                 {
-                  id: '5ece2c077e39da27658aa8a9',
-                  image: '/assets/products/product-1.png',
-                  name: 'Healthcare Erbology',
-                  updatedAt: subHours(now, 6).getTime()
+                    id: 'bcad5524fe3a2f8f8620ceda',
+                    image: '/assets/products/product-7.png',
+                    name: 'Prescription Refill Alert: Patient Laura(16)',
+                    updatedAt: "7th Nov 2023 - 01:00"
                 },
                 {
-                  id: '5ece2c0d16f70bff2cf86cd8',
-                  image: '/assets/products/product-2.png',
-                  name: 'Makeup Lancome Rouge',
-                  updatedAt: subDays(subHours(now, 8), 2).getTime()
+                    id: 'bcad5524fe3a2f8f8620ceda',
+                    image: '/assets/products/product-7.png',
+                    name: 'Recovery Progress: Patient Brian(15)',
+                    updatedAt: "7th Nov 2023 - 01:00"
                 },
                 {
-                  id: 'b393ce1b09c1254c3a92c827',
-                  image: '/assets/products/product-5.png',
-                  name: 'Skincare Soja CO',
-                  updatedAt: subDays(subHours(now, 1), 1).getTime()
-                },
-                {
-                  id: 'a6ede15670da63f49f752c89',
-                  image: '/assets/products/product-6.png',
-                  name: 'Makeup Lipstick',
-                  updatedAt: subDays(subHours(now, 3), 3).getTime()
-                },
-                {
-                  id: 'bcad5524fe3a2f8f8620ceda',
-                  image: '/assets/products/product-7.png',
-                  name: 'Healthcare Ritual',
-                  updatedAt: subDays(subHours(now, 5), 6).getTime()
-                }
+                    id: '5ece2c077e39da27658aa8a9',
+                    image: '/assets/products/product-1.png',
+                    name: 'Critical Alert: Patient John(15) Condition Deteriorating',
+                    updatedAt: "10th Nov 2023 - 20:00"
+                  },
+                  {
+                    id: '5ece2c0d16f70bff2cf86cd8',
+                    image: '/assets/products/product-2.png',
+                    name: 'Medication Adherence Alert: Patient Sarah(120)',
+                    updatedAt: "9th Nov 2023 - 14:00"
+                  },
+                  {
+                    id: 'b393ce1b09c1254c3a92c827',
+                    image: '/assets/products/product-5.png',
+                    name: 'Appointment Reminder: Michael Davis',
+                    updatedAt: "8th Nov 2023 - 21:00"
+                  },
+                  {
+                    id: 'a6ede15670da63f49f752c89',
+                    image: '/assets/products/product-6.png',
+                    name: 'Recovery Update: Patient Emily(10)',
+                    updatedAt: "8th Nov 2023 - 11:00"
+                  }
               ]}
               sx={{ height: '100%' }}
             />

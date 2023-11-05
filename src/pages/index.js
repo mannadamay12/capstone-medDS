@@ -98,7 +98,7 @@ const Page = () => (
             <OverviewSales
               chartSeries={[
                 {
-                  name: 'Cold',
+                  name: 'Surgery',
                   data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20]
                 },
                 {
@@ -134,32 +134,32 @@ const Page = () => (
                 {
                   id: '5ece2c077e39da27658aa8a9',
                   image: '/assets/products/product-1.png',
-                  name: 'Healthcare Erbology',
-                  updatedAt: subHours(now, 6).getTime()
+                  name: 'Critical Alert: Patient John(15) Condition Deteriorating',
+                  updatedAt: "10th Nov 2023 - 20:00"
                 },
                 {
                   id: '5ece2c0d16f70bff2cf86cd8',
                   image: '/assets/products/product-2.png',
-                  name: 'Makeup Lancome Rouge',
-                  updatedAt: subDays(subHours(now, 8), 2).getTime()
+                  name: 'Medication Adherence Alert: Patient Sarah(120)',
+                  updatedAt: "9th Nov 2023 - 14:00"
                 },
                 {
                   id: 'b393ce1b09c1254c3a92c827',
                   image: '/assets/products/product-5.png',
-                  name: 'Skincare Soja CO',
-                  updatedAt: subDays(subHours(now, 1), 1).getTime()
+                  name: 'Appointment Reminder: Michael Davis',
+                  updatedAt: "8th Nov 2023 - 21:00"
                 },
                 {
                   id: 'a6ede15670da63f49f752c89',
                   image: '/assets/products/product-6.png',
-                  name: 'Makeup Lipstick',
-                  updatedAt: subDays(subHours(now, 3), 3).getTime()
+                  name: 'Recovery Update: Patient Emily(10)',
+                  updatedAt: "8th Nov 2023 - 11:00"
                 },
                 {
                   id: 'bcad5524fe3a2f8f8620ceda',
                   image: '/assets/products/product-7.png',
-                  name: 'Healthcare Ritual',
-                  updatedAt: subDays(subHours(now, 5), 6).getTime()
+                  name: 'Critical Alert: Patient David(14) Oxygen Saturation Below 90%',
+                  updatedAt: "7th Nov 2023 - 01:00"
                 }
               ]}
               sx={{ height: '100%' }}
@@ -174,63 +174,63 @@ const Page = () => (
               orders={[
                 {
                   id: 'f69f88012978187a6c12897f',
-                  ref: 'DEV1049',
+                  ref: '120',
                   amount: 30.5,
                   customer: {
                     name: 'Ekaterina Tankova'
                   },
                   createdAt: 1555016400000,
-                  status: 'pending'
+                  status: 'Medium'
                 },
                 {
                   id: '9eaa1c7dd4433f413c308ce2',
-                  ref: 'DEV1048',
+                  ref: '14',
                   amount: 25.1,
                   customer: {
                     name: 'Cao Yu'
                   },
                   createdAt: 1555016400000,
-                  status: 'delivered'
+                  status: 'High'
                 },
                 {
                   id: '01a5230c811bd04996ce7c13',
-                  ref: 'DEV1047',
+                  ref: '17',
                   amount: 10.99,
                   customer: {
                     name: 'Alexa Richardson'
                   },
                   createdAt: 1554930000000,
-                  status: 'refunded'
+                  status: 'Low'
                 },
                 {
                   id: '1f4e1bd0a87cea23cdb83d18',
-                  ref: 'DEV1046',
+                  ref: '10',
                   amount: 96.43,
                   customer: {
                     name: 'Anje Keizer'
                   },
                   createdAt: 1554757200000,
-                  status: 'pending'
+                  status: 'Medium'
                 },
                 {
                   id: '9f974f239d29ede969367103',
-                  ref: 'DEV1045',
+                  ref: '10',
                   amount: 32.54,
                   customer: {
                     name: 'Clarke Gillebert'
                   },
                   createdAt: 1554670800000,
-                  status: 'delivered'
+                  status: 'High'
                 },
                 {
                   id: 'ffc83c1560ec2f66a1c05596',
-                  ref: 'DEV1044',
+                  ref: '14',
                   amount: 16.76,
                   customer: {
                     name: 'Adam Denisov'
                   },
                   createdAt: 1554670800000,
-                  status: 'delivered'
+                  status: 'High'
                 }
               ]}
               sx={{ height: '100%' }}
