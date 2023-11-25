@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
@@ -10,7 +10,8 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/customers-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
-import BasicModal from 'src/components/BasicModal';
+import BasicModal from 'src/components/BasicModal'
+import axios from 'axios';
 
 const now = new Date();
 
@@ -125,26 +126,25 @@ const useCustomerIds = (customers) => {
   );
 };
 
+
+
 const Page = () => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const customers = useCustomers(page, rowsPerPage);
-  const customersIds = useCustomerIds(customers);
-  const customersSelection = useSelection(customersIds);
+  const [customers,setCustomers] = useState([])
 
-  const handlePageChange = useCallback(
-    (event, value) => {
-      setPage(value);
-    },
-    []
-  );
+  async function getPatients() {
+    try {
+      const response = await axios.get('http://localhost:8080/allpatients');
+      setCustomers(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  useEffect(()=>{
+    getPatients()
+  },[])
 
-  const handleRowsPerPageChange = useCallback(
-    (event) => {
-      setRowsPerPage(event.target.value);
-    },
-    []
-  );
+  
 
   return (
     <>

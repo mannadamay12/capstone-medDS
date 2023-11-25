@@ -19,23 +19,8 @@ import { getInitials } from 'src/utils/get-initials';
 import Link from 'next/link';
 
 export const CustomersTable = (props) => {
-  const {
-    count = 0,
-    items = [],
-    onDeselectAll,
-    onDeselectOne,
-    onPageChange = () => { },
-    onRowsPerPageChange,
-    onSelectAll,
-    onSelectOne,
-    page = 0,
-    rowsPerPage = 0,
-    selected = []
-  } = props;
-
-  const selectedSome = (selected.length > 0) && (selected.length < items.length);
-  const selectedAll = (items.length > 0) && (selected.length === items.length);
-
+  const items = props.items
+  console.log(items) 
   return (
     <Card>
       <Scrollbar>
@@ -61,18 +46,15 @@ export const CustomersTable = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {items.map((customer) => {
-                const isSelected = selected.includes(customer.id);
-                const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
-
+              {items?.map((customer) => {
+                const redirect = "/patient/"+customer.redirect;
                 return (
                   <TableRow
                     hover
                     key={customer.id}
-                    selected={isSelected}
                   >
                     <TableCell>
-                      <Link href="/patient/123">
+                      <Link href={redirect}>
                         <Stack
                           alignItems="center"
                           direction="row"
@@ -91,13 +73,13 @@ export const CustomersTable = (props) => {
                       {customer.email}
                     </TableCell>
                     <TableCell>
-                      {customer.address}
+                      {customer.age}
                     </TableCell>
                     <TableCell>
-                      {customer.phone}
+                      {customer.contactno}
                     </TableCell>
                     <TableCell>
-                      {createdAt}
+                      {}
                     </TableCell>
                   </TableRow>
                 );

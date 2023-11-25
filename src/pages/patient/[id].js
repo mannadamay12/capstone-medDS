@@ -1,5 +1,7 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
+import axios from 'axios';
+import { usePathname } from 'next/navigation'
 import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
@@ -142,54 +144,56 @@ const Page = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const customers = useCustomers(page, rowsPerPage);
-    const customersIds = useCustomerIds(customers);
-    const customersSelection = useSelection(customersIds);
+    const pathname = usePathname()
+    const username = pathname.split("/")[2]
 
-    const handlePageChange = useCallback(
-        (event, value) => {
-            setPage(value);
-        },
-        []
-    );
-
-    const handleRowsPerPageChange = useCallback(
-        (event) => {
-            setRowsPerPage(event.target.value);
-        },
-        []
-    );
-
-    const patient = {
-        name: "Ishaan Bhola",
-        dob: "10/12/2001",
-        age: "20",
-        gender: "Male",
-        id: "123",
-        email: "ishaanbhola@gmail.com",
-        phone: "987654321",
-        emergencyContacts: [],
-        medicines: [],
-        allergies: [],
-        doctorNotes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore labore rerum quia atque consequatur voluptate placeat eos ad doloremque, sequi quasi ipsam sunt voluptatem, modi cupiditate minus laborum nulla. Dolorum!",
-        stats: [{
-            name: "Heart rate",
-            value: "72"
-        }, {
-            name: "Sp02",
-            value: "95"
-        }, {
-            name: "steps",
-            value: "10k"
-        }, {
-            name: "temperature",
-            value: "97 F"
-        },],
-        prevMessages: [],
-        testResults: [],
-        appointments: [],
-        bloodType: "A-ve",
-        history: ""
+    async function getPatient(username) {
+        try {
+          const response = await axios.get(`http://localhost:8080/patient/${username}`);
+          setPatient(response.data)
+          console.log(response.data)
+        } catch (error) {
+          console.error(error);
+        }
     }
+
+    const [patient,setPatient]=useState({})
+    useEffect(()=>{
+        getPatient(username)
+    },[])
+    
+
+    // const patient = {
+    //     name: "Ishaan Bhola",
+    //     dob: "10/12/2001",
+    //     age: "20",
+    //     gender: "Male",
+    //     id: "123",
+    //     email: "ishaanbhola@gmail.com",
+    //     phone: "987654321",
+    //     emergencyContacts: [],
+    //     medicines: [],
+    //     allergies: [],
+    //     doctorNotes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore labore rerum quia atque consequatur voluptate placeat eos ad doloremque, sequi quasi ipsam sunt voluptatem, modi cupiditate minus laborum nulla. Dolorum!",
+    //     stats: [{
+    //         name: "Heart rate",
+    //         value: "72"
+    //     }, {
+    //         name: "Sp02",
+    //         value: "95"
+    //     }, {
+    //         name: "steps",
+    //         value: "10k"
+    //     }, {
+    //         name: "temperature",
+    //         value: "97 F"
+    //     },],
+    //     prevMessages: [],
+    //     testResults: [],
+    //     appointments: [],
+    //     bloodType: "A-ve",
+    //     history: ""
+    // }
 
     return (
         <>
@@ -264,7 +268,7 @@ const Page = () => {
                                             Heart rate
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.stats[0].value}
+                                            {patient.heartrate}
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -276,7 +280,7 @@ const Page = () => {
                                             Sp02
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.stats[1].value}
+                                            {patient.sp02}
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -288,7 +292,7 @@ const Page = () => {
                                             Steps
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.stats[2].value}
+                                            {patient.steps}
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -300,7 +304,7 @@ const Page = () => {
                                             Temperature
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.stats[3].value}
+                                            {patient.temperature}
                                         </Typography>
                                     </CardContent>
                                 </Card>
