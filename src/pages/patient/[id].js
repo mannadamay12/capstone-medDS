@@ -1,16 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import Head from 'next/head';
+import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { usePathname } from 'next/navigation'
 import { subDays, subHours } from 'date-fns';
-import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
-import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
-import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import { Box, Button, Container, Stack, SvgIcon, Typography, Divider } from '@mui/material';
-import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { CustomersTable } from 'src/sections/customer/customers-table';
-import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -25,6 +18,7 @@ import { PatientAppointmentTable } from 'src/sections/customer/PatientAppointmen
 import { OverviewLatestProducts } from 'src/sections/overview/overview-latest-products';
 import { OverviewPrescript } from 'src/sections/overview/overview-prescript';
 import { OverviewTests } from 'src/sections/overview/overview-tests';
+import Link from 'next/link';
 
 
 const now = new Date();
@@ -131,14 +125,7 @@ const useCustomers = (page, rowsPerPage) => {
     );
 };
 
-const useCustomerIds = (customers) => {
-    return useMemo(
-        () => {
-            return customers.map((customer) => customer.id);
-        },
-        [customers]
-    );
-};
+
 
 const Page = () => {
     const [page, setPage] = useState(0);
@@ -157,43 +144,47 @@ const Page = () => {
         }
     }
 
+    async function getHeartData() {
+        try {
+          const response = await axios.get(`http://localhost:8080/heartdata`);
+          setHeartData(response.data.pop())
+          console.log(response.data.pop())
+        } catch (error) {
+          console.error(error);
+        }
+    }
+
+    async function getStepsData() {
+        try {
+          const response = await axios.get(`http://localhost:8080/stepsdata`);
+          setStepsData(response.data.pop())
+          console.log(response.data.pop())
+        } catch (error) {
+          console.error(error);
+        }
+    }
+
     const [patient,setPatient]=useState({})
+    const [heartData,setHeartData]=useState({})
+    const [stepsData,setStepsData]=useState({})
     useEffect(()=>{
         getPatient(username)
+        getHeartData()
+        getStepsData()
     },[])
-    
 
-    // const patient = {
-    //     name: "Ishaan Bhola",
-    //     dob: "10/12/2001",
-    //     age: "20",
-    //     gender: "Male",
-    //     id: "123",
-    //     email: "ishaanbhola@gmail.com",
-    //     phone: "987654321",
-    //     emergencyContacts: [],
-    //     medicines: [],
-    //     allergies: [],
-    //     doctorNotes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore labore rerum quia atque consequatur voluptate placeat eos ad doloremque, sequi quasi ipsam sunt voluptatem, modi cupiditate minus laborum nulla. Dolorum!",
-    //     stats: [{
-    //         name: "Heart rate",
-    //         value: "72"
-    //     }, {
-    //         name: "Sp02",
-    //         value: "95"
-    //     }, {
-    //         name: "steps",
-    //         value: "10k"
-    //     }, {
-    //         name: "temperature",
-    //         value: "97 F"
-    //     },],
-    //     prevMessages: [],
-    //     testResults: [],
-    //     appointments: [],
-    //     bloodType: "A-ve",
-    //     history: ""
-    // }
+    // const [heartrate,setHeartrate] = useState(72);
+    // function generateRandomNumber() {
+    //     // Generate a random number between 70 and 80
+    //     const randomNumber = Math.floor(Math.random() * (80 - 70 + 1)) + 70;
+      
+    //     // Output the random number
+    //     setHeartrate(randomNumber)
+    //   }
+    //   setInterval(generateRandomNumber, 10000);
+
+    const moreheartratedata = "http://localhost:8080/heartdata"
+    const morestepsdata = "http://localhost:8080/stepsdata"
 
     return (
         <>
@@ -211,7 +202,7 @@ const Page = () => {
                                 <Card sx={{ maxWidth: 345 }}>
                                     <CardMedia
                                         sx={{ height: 140 }}
-                                        image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
+                                        image={patient.img}
                                         title="patient image"
                                     />
                                     <CardContent style={{ padding: "10px 10px 0px 15px"}}>
@@ -222,16 +213,16 @@ const Page = () => {
                                             {"Age: "} {patient.age}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {"DOB: "} {patient.dob}
+                                            {"DOB: "} {patient.DOB}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
                                             {"Gender: "} {patient.gender}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {"BloodType: "} {patient.bloodType}
+                                            {"BloodType: "} {patient.bloodtype}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {"Contact Number: "} {patient.phone}
+                                            {"Contact Number: "} {patient.contactno}
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
                                             {"Email: "} {patient.email}
@@ -267,8 +258,17 @@ const Page = () => {
                                         <Typography variant="subtitle1" gutterBottom>
                                             Heart rate
                                         </Typography>
-                                        <Typography variant="subtitle1" gutterBottom>
-                                            {patient.heartrate}
+                                        <Typography variant="subtitle2" gutterBottom>
+                                            Average - {Math.floor(heartData.avg)}
+                                        </Typography>
+                                        <Typography variant="subtitle2" gutterBottom>
+                                            Max - {heartData.max}
+                                        </Typography>
+                                        <Typography variant="subtitle2" gutterBottom>
+                                            Min - {heartData.min}
+                                        </Typography>
+                                        <Typography variant="subtitle2" gutterBottom>
+                                            <Link href={moreheartratedata}>More details</Link>
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -292,7 +292,10 @@ const Page = () => {
                                             Steps
                                         </Typography>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            {patient.steps}
+                                            {stepsData.steps}
+                                        </Typography>
+                                        <Typography variant="subtitle2" gutterBottom>
+                                            <Link href={morestepsdata}>More details</Link>
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -311,20 +314,7 @@ const Page = () => {
                             </Grid>
                             <Grid xs={12}>
                             <OverviewTests
-                                    orders={[
-                                    {
-                                        id: '5ece2c077e39da27658aa8a9',
-                                        name: 'Lipid Profile',
-                                        remark: 'Patient exhibits high cholesterol levels with elevated LDL cholesterol, low HDL cholesterol, and borderline high triglycerides, necessitating urgent intervention and initiation of statin therapy.',
-                                        date: '5th Nov 2023'
-                                    },
-                                    {
-                                        id: '5ece2c0d16f70bff2cf86cd8',
-                                        name: 'Liver Function Tests (LFT)',
-                                        remark: 'A mild elevation in ALT levels, potential liver dysfunction, possibly related to high cholesterol; careful monitoring of liver enzymes is essential while on statin therapy.',
-                                        date: '5th Nov 2023'
-                                    }
-                                ]}/>
+                                    orders={patient.testreports}/>
                             </Grid>
                             <Grid xs={12}>
                                 <Card>
@@ -342,9 +332,9 @@ const Page = () => {
                                         </Stack>
                                         <Typography variant="subtitle1" gutterBottom>
                                             <ul>
-                                                <li>Medical History: High Cholesterol, History of Heart Attack in 2008</li>
-                                                <li>Family History: Father had a history of stroke, mother had diabetes.</li>
-                                                <li>Diagnosis: Diagnosed with High Cholesterol in 2005, experienced a Heart Attack in 2008. Currently managing cholesterol with statins and regular cardiovascular check-ups.</li>
+                                                {patient.notes?.map((note)=>{
+                                                    return <li>{note}</li>
+                                                })}
                                             </ul>
                                         </Typography>
                                     </CardContent>
@@ -356,39 +346,11 @@ const Page = () => {
                     <Grid container spacing={2}>
                         <Grid xs={6}>
                             <OverviewPrescript
-                            orders={[
-                {
-                  id: 'f69f88012978187a6c12897f',
-                  dose: '30 mg',
-                  name: 'Ekaterina Tankova',
-                  duration: 'This prescription is for a 30-day supply. Refill as needed.',
-                  instruct: 'Take one tablet orally every evening with or without food.'
-                },
-                {
-                    id: 'f69f88012978187a6c12897f',
-                    name: 'Rosuvastatin (generic for Crestor)',
-                    dose: '10 mg',
-                    instruct: 'Take one tablet orally every evening with or without food.',
-                    duration: 'This prescription is for a 30-day supply. Refill as needed.'
-                  } 
-                ]}/>
+                            orders={patient.prescription}/>
                         </Grid>
                         <Grid xs={6}>
                                     <OverviewLatestProducts
-              products={[
-                {
-                  id: '5ece2c077e39da27658aa8a9',
-                  image: '/assets/products/product-1.png',
-                  name: 'Critical Alert: Patient John(15) Condition Deteriorating',
-                  updatedAt: "10th Nov 2023 - 20:00"
-                },
-                {
-                  id: '5ece2c0d16f70bff2cf86cd8',
-                  image: '/assets/products/product-2.png',
-                  name: 'Medication Adherence Alert: Patient Sarah(120)',
-                  updatedAt: "9th Nov 2023 - 14:00"
-                }
-              ]}
+              products={patient.notifications}
               sx={{ height: '100%' }}
             />
                         </Grid>
