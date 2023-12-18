@@ -185,6 +185,7 @@ const Page = () => {
 
     const moreheartratedata = "http://localhost:8080/heartdata"
     const morestepsdata = "http://localhost:8080/stepsdata"
+    const emadata = "http://localhost:8080/ema"
 
     return (
         <>
@@ -304,10 +305,10 @@ const Page = () => {
                                 <Card>
                                     <CardContent style={{ padding: "10px 15px" }}>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            Temperature
+                                            EMA
                                         </Typography>
-                                        <Typography variant="subtitle1" gutterBottom>
-                                            {patient.temperature}
+                                        <Typography variant="subtitle2" gutterBottom>
+                                            <Link href={emadata}>Click to see patient status history</Link>
                                         </Typography>
                                     </CardContent>
                                 </Card>
