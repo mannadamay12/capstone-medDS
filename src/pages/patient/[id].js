@@ -186,6 +186,7 @@ const Page = () => {
     const moreheartratedata = "http://localhost:8080/heartdata"
     const morestepsdata = "http://localhost:8080/stepsdata"
     const emadata = "http://localhost:8080/ema"
+    const ekfdata = "http://localhost:8080/efk"
 
     return (
         <>
@@ -286,7 +287,7 @@ const Page = () => {
                                     </CardContent>
                                 </Card>
                             </Grid>
-                            <Grid xs={3} style={{textAlign: 'center'}}>
+                            <Grid xs={2} style={{textAlign: 'center'}}>
                                 <Card>
                                     <CardContent style={{ padding: "10px 15px" }}>
                                         <Typography variant="subtitle1" gutterBottom>
@@ -301,7 +302,7 @@ const Page = () => {
                                     </CardContent>
                                 </Card>
                             </Grid>
-                            <Grid xs={3} style={{textAlign: 'center'}}>
+                            <Grid xs={2} style={{textAlign: 'center'}}>
                                 <Card>
                                     <CardContent style={{ padding: "10px 15px" }}>
                                         <Typography variant="subtitle1" gutterBottom>
@@ -309,6 +310,18 @@ const Page = () => {
                                         </Typography>
                                         <Typography variant="subtitle2" gutterBottom>
                                             <Link href={emadata}>Click to see patient status history</Link>
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid xs={2} style={{textAlign: 'center'}}>
+                                <Card>
+                                    <CardContent style={{ padding: "10px 15px" }}>
+                                        <Typography variant="subtitle1" gutterBottom>
+                                            EKF
+                                        </Typography>
+                                        <Typography variant="subtitle2" gutterBottom>
+                                            <Link href={ekfdata}>Click to see patient status history</Link>
                                         </Typography>
                                     </CardContent>
                                 </Card>
